@@ -47,6 +47,20 @@
       text-decoration: none;
     }
     
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    /* Buttons default to blue text + native look on mobile browsers */
+    button {
+      font: inherit;
+      color: var(--ink);
+      -webkit-appearance: none;
+      appearance: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     .mono {
       font-family: "Space Mono", monospace;
     }
@@ -67,6 +81,8 @@
 
     /* --- ANNOUNCEMENT BAR --- */
     .announce {
+      position: relative;
+      z-index: 21;
       background: var(--blue);
       text-align: center;
       font: 700 12px "Space Mono", monospace;
@@ -188,6 +204,7 @@
     }
     
     .btns {
+      margin-top: 40px;
       display: flex;
       gap: 14px;
       justify-content: center;
@@ -460,6 +477,16 @@
       pointer-events: none;
     }
     
+    .media .play::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 3px;
+      border-style: solid;
+      border-width: 7px 0 7px 11px;
+      border-color: transparent transparent transparent var(--ink);
+    }
+
     .media.playing .play {
       display: none;
     }
@@ -807,6 +834,41 @@
       .emoji { animation: none; }
       .reveal { opacity: 1; transform: none; transition: none; }
     }
+
+    /* --- MOBILE SPACING --- */
+    @media (max-width: 760px) {
+      .nav { top: 8px; margin-top: 12px; }
+      .nav-box { padding: 10px 16px; }
+      .logo { font-size: 36px; }
+
+      .hero {
+        min-height: 85svh;
+        padding: 150px 20px 64px;
+      }
+      .btns { margin-top: 28px; }
+
+      .intro { padding: 64px 0 36px; }
+      .intro p { font-size: 16px; }
+
+      .split { gap: 32px; padding-bottom: 64px; }
+      .split h2 { margin-bottom: 14px; }
+      .split p { max-width: none; }
+      .photo { box-shadow: 6px 6px 0 var(--blue); }
+
+      .projects { padding: 48px 0 64px; }
+      .projects h2 { margin-bottom: 28px; }
+      .filters { margin: -8px 0 26px; }
+      .mgrid { gap: 24px; }
+      .mcard { box-shadow: 4px 4px 0 var(--ink); }
+      .mbody { padding: 18px 18px 22px; }
+      .mbody h3 { font-size: 24px; }
+
+      .contact { padding: 72px 20px 48px; }
+      .contact h2 { margin-bottom: 26px; }
+      .social { margin-top: 28px; }
+
+      .to-top { right: 14px; bottom: 14px; width: 44px; height: 44px; }
+    }
   </style>
 
   <script>
@@ -852,10 +914,6 @@
     <h1>
       <span class="hl">Hi, I'm Cheyenne</span><br>
       a Multimedia arts<br>and animation student !    </h1>
-    
-    <p class="sub">
-      I'm an Information Technology student at National University - Manila, focused on Multimedia Arts and Animation. I build responsive websites and Unity games, blending creative media with clean, functional code to make interactive experiences that look great and run smoothly.
-    </p>
     
     <div class="btns">
       <a href="#contact" class="pill">Hire me</a>
@@ -917,7 +975,7 @@
           <div class="media" style="--m:var(--blue)">
             <video src="QuakelyTeaser.mp4" poster="QuakelyThumbnail.png" playsinline preload="metadata" onerror="noVid(this)"></video>
             <span class="kind">Game dev</span>
-            <span class="play">▶</span>
+            <span class="play" aria-hidden="true"></span>
           </div>
           <div class="mbody">
             <h3>Capstone Project: Quakely</h3>
@@ -992,7 +1050,7 @@
 
   <!-- CONTACT SECTION -->
   <section class="contact grid-bg" id="contact">
-    <h2>let's make something<br>lovely together</h2>
+    <h2>let's build something<br>amazing together</h2>
     <div class="contact-btns">
       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cheyennebadiong10@gmail.com" target="_blank" rel="noopener noreferrer" class="pill">Say hello</a>
       <a href="tel:+639958121441" class="pill">Contact Me</a>
